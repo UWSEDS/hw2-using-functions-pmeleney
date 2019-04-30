@@ -14,6 +14,7 @@ def download():
 	urllib.request.urlretrieve(url, 'data/us_population.csv')
 	print('download complete')
 	df = pd.read_csv('data/us_population.csv')
+	return df
 
 def test_create_dataframe(df):
 
@@ -296,17 +297,36 @@ def test_create_dataframe(df):
 	#Check (1) column names are as expected
 	#(2) column dtypes are as expected
 	#(3) dataframe has at least 10 rows
-	i = 0
-	dtypes_check = []
-	for col in df.columns:
-		if df[col].dtype == df_col_dtypes[i]:
-			dtypes_check.append(True)
-		i += 1
     
-	if list(df.columns) == df_columns and all(dtypes_check) and df.shape[1]>=10:
-		return(True)
+	for col in df.columns:
+		if col in df_columns:
+			pass
+		else:
+			print('here 1', col)
+			return False
+
+	for col in df_columns:
+		if col in df.columns:
+			pass
+		else:
+			print('here 2', col)
+			return False
+
+	dict_dtypes = dict(zip(df_columns, df_col_dtypes))
+
+	for col in dict_dtypes.keys():
+		if dict_dtypes[col] == df[col].dtype:
+			pass
+		else:
+			print('here 3', col)
+			return False
+
+	if df.shape[0] >= 10:
+		return True
 	else:
-		return(False)
+		print ('here 4')
+		return False
+
 
 if __name__ == '__main__':
 	download()
