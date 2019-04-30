@@ -302,14 +302,12 @@ def test_create_dataframe(df):
 		if col in df_columns:
 			pass
 		else:
-			print('here 1', col)
 			return False
 
 	for col in df_columns:
 		if col in df.columns:
 			pass
 		else:
-			print('here 2', col)
 			return False
 
 	dict_dtypes = dict(zip(df_columns, df_col_dtypes))
@@ -318,13 +316,11 @@ def test_create_dataframe(df):
 		if dict_dtypes[col] == df[col].dtype:
 			pass
 		else:
-			print('here 3', col)
 			return False
 
 	if df.shape[0] >= 10:
 		return True
 	else:
-		print ('here 4')
 		return False
 
 
