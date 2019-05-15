@@ -1,6 +1,8 @@
 # HW2 - Using Functions
 
-##### Grade: 6/7
+##### Final grade: 7/7   
+
+Grade: 6/7     
 
 -1: Your test implicitly depended on the order of the columns, which might have been too strong of an assumption. It's better to design your tests so that they can work correctly even when two dataframes have the same columns but in different orders.
 
